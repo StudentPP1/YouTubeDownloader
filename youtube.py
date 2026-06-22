@@ -5,7 +5,6 @@ from typing import Any
 import eyed3  # type: ignore[import-untyped]
 import requests
 import yt_dlp  # type: ignore[import-untyped]
-from pytube import Playlist  # type: ignore[import-untyped]
 
 from const import destination_path, ydl_opts
 
@@ -65,8 +64,13 @@ class YouTube:
             os.remove("img.jpg")
 
     def download_playlist(self, url: str) -> None:
-        videos = Playlist(url)
-        video_urls = list(videos.video_urls)
+        opts: Any = {**ydl_opts, "quiet": True, "skip_download": True, "extract_flat": True}
+
+        with yt_dlp.YoutubeDL(opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+
+        entries = info.get("entries", []) if info else []
+        video_urls = [f"https://www.youtube.com/watch?v={e['id']}" for e in entries if e]
         total = len(video_urls)
 
         for i, video_url in enumerate(video_urls, 1):

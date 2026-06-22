@@ -18,6 +18,7 @@ def main() -> None:
                 os.mkdir(destination_path)
 
             if url == "q":
+                print("See you soon")
                 break
             elif url == "liked":
                 spotify.download_liked_tracks()

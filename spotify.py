@@ -136,7 +136,7 @@ class Spotify:
         ).strip()
 
         if raw == "":
-            to_download = tracks[prev:]
+            to_download = tracks[: total - prev]
         else:
             try:
                 to_download = tracks[: int(raw)]
