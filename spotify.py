@@ -29,7 +29,7 @@ copy(document.querySelector('[data-encore-id="text"].encore-internal-color-text-
 """
 
 CLICK_X: int = 500
-CLICK_Y: int = 850
+CLICK_Y: int = 550
 PROGRESS_FILE: str = "spotify_progress.txt"
 
 
@@ -65,7 +65,7 @@ class Spotify:
     def _run_js(self, js: str) -> str:
         pyautogui.hotkey("f12")
         time.sleep(1.5)
-        pyautogui.click(1300, 1000)
+        pyautogui.click(1500, 1000)
         time.sleep(0.3)
         keyboard.write(js.strip(), delay=0.01)
         time.sleep(0.3)

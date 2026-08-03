@@ -8,7 +8,6 @@ import yt_dlp  # type: ignore[import-untyped]
 
 from const import destination_path, ydl_opts
 
-
 class YouTube:
     SPLIT_LETTER: str = "["
 
